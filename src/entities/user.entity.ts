@@ -1,9 +1,11 @@
 import {
   BeforeInsert,
   Column,
+  CreateDateColumn,
   Entity,
   PrimaryGeneratedColumn,
   Unique,
+  UpdateDateColumn,
 } from 'typeorm';
 import { v4 } from 'uuid';
 
@@ -28,6 +30,12 @@ export class User {
 
   @Column({ default: '' })
   bio: string;
+
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
 
   @BeforeInsert()
   async beforeInsert() {
