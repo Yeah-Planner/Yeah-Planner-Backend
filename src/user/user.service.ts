@@ -22,14 +22,17 @@ export class UserService {
     await this.userRepository.delete(id);
   }
 
-  async signUp({ email, password, username }: SignUpDto) {
+  async signUp(
+    { email, password, username }: SignUpDto,
+    crypt: (e: string) => string,
+  ) {
     const dup = await this.userRepository.find({ where: { email } });
     if (dup.length > 0) {
       throw new ConflictException('Email already exists');
     }
     const user = this.userRepository.create({
       email,
-      password,
+      password: crypt(password),
       username,
     });
 
