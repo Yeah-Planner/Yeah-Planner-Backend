@@ -1,7 +1,8 @@
 import { UserService } from './user.service';
 import { SignUpDto } from './dto/sign-up-dto';
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, HttpCode, Post } from '@nestjs/common';
 import { SHA256 } from 'crypto-js';
+import { LogInDto } from './dto/log-in-dto';
 
 @Controller('user')
 export class UserController {
@@ -14,5 +15,11 @@ export class UserController {
   @Post()
   signUp(@Body() data: SignUpDto) {
     return this.userService.signUp(data, this.crypt);
+  }
+
+  @Post('/login')
+  @HttpCode(200)
+  login(@Body() data: LogInDto) {
+    return this.userService.login(data, this.crypt);
   }
 }
