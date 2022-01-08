@@ -8,7 +8,7 @@ async function bootstrap() {
   app.enableCors({
     origin: (origin, callback) => {
       const o = origin.split('://')[1].split(':')[0];
-      const origins = ['localhost', 'damascus.kro.kr'];
+      const origins = ['localhost', 'damascus.kro.kr', 'yeahplanner.kro.kr'];
       if (origins.includes(o)) return callback(null, true);
       callback(new Error('Not allowed by CORS'));
     },
