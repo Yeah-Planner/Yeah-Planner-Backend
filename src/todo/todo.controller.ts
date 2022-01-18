@@ -1,3 +1,4 @@
+import { updateTodoDto } from './dto/update-todo-dto';
 import { DeleteTodoDto } from './dto/delete-todo-dto';
 import { Body, Controller, Post } from '@nestjs/common';
 import { Todo } from 'src/entities/todo.entity';
@@ -38,5 +39,10 @@ export class TodoController {
     @Body() deleteTodoDto: DeleteTodoDto,
   ): Promise<DeleteResult> {
     return this.todoService.deleteTodo(deleteTodoDto);
+  }
+
+  @Post('/update')
+  async updateTodo(@Body() updateTodoDto: updateTodoDto): Promise<Todo> {
+    return this.todoService.updateTodo(updateTodoDto);
   }
 }
