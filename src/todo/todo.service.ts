@@ -3,6 +3,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Todo } from 'src/entities/todo.entity';
 import { Repository } from 'typeorm';
+import { CreateTodoDto } from './dto/create-todo-dto';
 
 @Injectable()
 export class TodoService {
@@ -12,5 +13,16 @@ export class TodoService {
 
   async getTodo({ owner }: GetTodoDto) {
     return await this.todoRepository.find({ owner });
+  }
+
+  async createTodo({ id, owner, title }: CreateTodoDto) {
+    return await this.todoRepository.save({
+      title,
+      id,
+      owner,
+      completed: false,
+      content: '',
+      deadline: '',
+    });
   }
 }
