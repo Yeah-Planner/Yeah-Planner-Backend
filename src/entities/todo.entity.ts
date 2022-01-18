@@ -21,7 +21,7 @@ export class Todo {
   @Column()
   completed: boolean;
 
-  @Column({ type: 'text' })
+  @Column({ type: 'longtext' })
   content: string;
 
   @Column()
