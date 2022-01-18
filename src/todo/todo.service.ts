@@ -1,3 +1,4 @@
+import { DeleteTodoDto } from './dto/delete-todo-dto';
 import { GetTodoDto } from './dto/get-todo-dto';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -24,5 +25,9 @@ export class TodoService {
       content: '',
       deadline: '',
     });
+  }
+
+  async deleteTodo({ id, owner }: DeleteTodoDto) {
+    return await this.todoRepository.delete({ id, owner });
   }
 }

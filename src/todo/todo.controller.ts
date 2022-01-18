@@ -1,8 +1,10 @@
+import { DeleteTodoDto } from './dto/delete-todo-dto';
 import { Body, Controller, Post } from '@nestjs/common';
 import { Todo } from 'src/entities/todo.entity';
 import { CreateTodoDto } from './dto/create-todo-dto';
 import { GetTodoDto } from './dto/get-todo-dto';
 import { TodoService } from './todo.service';
+import { DeleteResult } from 'typeorm';
 
 @Controller('todo')
 export class TodoController {
@@ -29,5 +31,12 @@ export class TodoController {
   @Post('/create')
   async createTodo(@Body() createTodoDto: CreateTodoDto): Promise<Todo> {
     return this.todoService.createTodo(createTodoDto);
+  }
+
+  @Post('/delete')
+  async deleteTodo(
+    @Body() deleteTodoDto: DeleteTodoDto,
+  ): Promise<DeleteResult> {
+    return this.todoService.deleteTodo(deleteTodoDto);
   }
 }
