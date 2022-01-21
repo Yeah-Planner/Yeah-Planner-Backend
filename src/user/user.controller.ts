@@ -1,8 +1,9 @@
 import { UserService } from './user.service';
 import { SignUpDto } from './dto/sign-up-dto';
-import { Body, Controller, HttpCode, Post } from '@nestjs/common';
+import { Body, Controller, HttpCode, Post, Get, Query } from '@nestjs/common';
 import { SHA256 } from 'crypto-js';
 import { LogInDto } from './dto/log-in-dto';
+import { GetUserDto } from './dto/get-user-dto';
 
 @Controller('user')
 export class UserController {
@@ -21,5 +22,10 @@ export class UserController {
   @HttpCode(200)
   login(@Body() data: LogInDto) {
     return this.userService.login(data, this.crypt);
+  }
+
+  @Get()
+  getUser(@Query() data: GetUserDto) {
+    return this.userService.getUser(data);
   }
 }

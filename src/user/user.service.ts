@@ -1,3 +1,4 @@
+import { GetUserDto } from './dto/get-user-dto';
 import {
   ConflictException,
   ForbiddenException,
@@ -52,6 +53,14 @@ export class UserService {
     }
     if (user.password !== crypt(password)) {
       throw new ForbiddenException('Password does not match');
+    }
+    return user;
+  }
+
+  async getUser({ uuid }: GetUserDto) {
+    const user = await this.userRepository.findOne({ uuid });
+    if (!user) {
+      throw new NotFoundException('User not found');
     }
     return user;
   }

@@ -10,7 +10,7 @@ async function bootstrap() {
     origin: (origin, callback) => {
       try {
         if (!origin) {
-          throw new Error('Origin is not defined');
+          return callback(null, true);
         }
         const ori = origin?.split('://');
 
