@@ -12,6 +12,7 @@ import { TodoModule } from './todo/todo.module';
       host: 'localhost',
       port: 3306,
       username: 'yeahp',
+      // deepcode ignore NoHardcodedPasswords: it's restricted db account which is intended
       password: 'yeahx4',
       database: 'yeah_planner',
       entities: [],
