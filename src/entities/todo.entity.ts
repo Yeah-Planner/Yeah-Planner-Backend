@@ -12,7 +12,7 @@ export class Todo {
   @PrimaryColumn()
   id: string;
 
-  @Column()
+  @Column('uuid')
   owner: string;
 
   @Column()

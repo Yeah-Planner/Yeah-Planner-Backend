@@ -4,6 +4,10 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
 import { TodoModule } from './todo/todo.module';
+import { CalendarModule } from './calendar/calendar.module';
+import { Calendar } from './entities/calendar.entity';
+import { Todo } from './entities/todo.entity';
+import { User } from './entities/user.entity';
 
 @Module({
   imports: [
@@ -15,12 +19,13 @@ import { TodoModule } from './todo/todo.module';
       // deepcode ignore NoHardcodedPasswords: it's restricted db account which is intended
       password: 'yeahx4',
       database: 'yeah_planner',
-      entities: [],
+      entities: [User, Todo, Calendar],
       synchronize: true,
       autoLoadEntities: true,
     }),
     UserModule,
     TodoModule,
+    CalendarModule,
   ],
   controllers: [AppController],
   providers: [AppService],
